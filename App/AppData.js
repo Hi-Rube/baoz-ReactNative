@@ -21,7 +21,7 @@ var Clubs = {
 };
 
 var Data = {
-	Groups: Groups
+	Groups: Groups,
 	Clubs: Clubs
 };
 
