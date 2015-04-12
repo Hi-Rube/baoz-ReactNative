@@ -5,6 +5,8 @@
 'use strict';
 
 var React = require('react-native');
+var Groups = require('./App/Proxy/Groups');
+var Images = require('./App/Proxy/Images');
 var {
   AppRegistry,
   StyleSheet,
@@ -13,6 +15,12 @@ var {
 } = React;
 
 var BaozReact = React.createClass({
+  componentDidMount: function(){
+    Groups.getGroupClubs('院校', function(data){
+      console.log(data[0]);
+    });
+    console.log(Images.getImageURL('sdd'));
+  },
   render: function() {
     return (
       <View style={styles.container}>
