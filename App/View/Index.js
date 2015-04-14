@@ -2,6 +2,7 @@
 
 var React = require('react-native');
 var AboutView = require('./Home/About');
+var GroupsView = require('./Home/Groups');
 var {
   StyleSheet,
   TabBarIOS,
@@ -44,7 +45,7 @@ var IndexView = React.createClass({
           icon = {require('image!groups')}
           onPress = {() => this.setState({selectedBar: 'group'})}
         >
-          {this._renderContent('组群', AboutView)}
+          {this._renderContent('组群', GroupsView)}
         </TabBarIOS.Item>
         <TabBarIOS.Item
           title = '搜索'
