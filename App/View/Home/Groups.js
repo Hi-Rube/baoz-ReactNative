@@ -4,11 +4,13 @@ var React = require('react-native');
 var AppData = require('../../AppData');
 var Groups = require('../../Proxy/Groups');
 var GroupListView = require('../Groups/GroupList');
+var ClubsView = require('../Clubs/Clubs');
 
 var {
   Text,
   View,
-  ListView
+  ListView,
+  ActivityIndicatorIOS
   } = React;
 
 var CACHE = [];
@@ -16,6 +18,7 @@ var CACHE = [];
 var GroupsView = React.createClass({
   getInitialState: function () {
     return {
+      loaded: false,
       selectGroup: '院校',
       dataSource: new ListView.DataSource({
         rowHasChanged: (r1, r2) => r1 !== r2
@@ -23,18 +26,18 @@ var GroupsView = React.createClass({
     }
   },
   _renderGroupTitle: function () {
-    var cxt = this;
+    var that = this;
     return (
       <View style={styles.itemTitle}>
       {AppData.Groups.groups.map(item => {
         return (
           <Text
             onPress = {() => {
-              cxt.setState({selectGroup: item});
+              this.setState({loaded: false});
               this._fetchData(item);
             }}
             style={[styles.itemTitleText, function () {
-              if (item == cxt.state.selectGroup) {
+              if (item == that.state.selectGroup) {
                 return {color: '#0d5302'}
               }
             }()]}>
@@ -46,40 +49,61 @@ var GroupsView = React.createClass({
     )
   },
   render: function () {
-    return (
-      <View style={styles.container}>
+    if (this.state.loaded) {
+      return (
+        <View style={styles.container}>
         {this._renderGroupTitle()}
-        <GroupListView
-          data={this.state.dataSource}
-          groupName={this.state.selectGroup}
-          style={styles.groupList} />
-      </View>
-    );
+          <GroupListView
+            selectClub={this.selectClub}
+            data={this.state.dataSource}
+            groupName={this.state.selectGroup}
+            style={styles.groupList} />
+        </View>
+      );
+    } else {
+      return (
+        <View style={styles.loadingContainer}>
+          <ActivityIndicatorIOS color="#356DD0" style={{marginVertical: 30, marginBottom: 30}} />
+        </View>
+      );
+    }
   },
   componentDidMount: function () {
     this._fetchData(this.state.selectGroup);
   },
   _fetchData: function (groupName) {
-    var cxt = this;
-    if (CACHE.length != 0) {
-      this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(CACHE)
-      });
-    }
+    var that = this;
     Groups.getGroupClubs(groupName, function (data) {
       CACHE = [];
       for (var i in data) {
         CACHE.push(data[i]);
       }
       //console.log(data[0]);
-      cxt.setState({dataSource: cxt.state.dataSource.cloneWithRows(CACHE)});
+      that.setState({
+        dataSource: that.state.dataSource.cloneWithRows(CACHE),
+        selectGroup: groupName,
+        loaded: true
+      });
     }, function (err) {
       console.log(err);
+    });
+  },
+  selectClub: function (clubName) {
+    this.props.navigator.push({
+      title: clubName,
+      component: ClubsView,
+      passProps: {clubName: clubName}
     });
   }
 });
 
 var styles = React.StyleSheet.create({
+  loadingContainer: {
+    backgroundColor: '#fff',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   container: {
     backgroundColor: '#ffffff',
     flex: 1

@@ -3,7 +3,6 @@
 var React = require('react-native');
 var Images = require('../../Proxy/Images');
 var AppData = require('../../AppData');
-var Clubs = require('../../Proxy/Clubs');
 
 var {
   Text,
@@ -15,15 +14,14 @@ var {
 var GroupListRow = React.createClass({
   render: function () {
     var data = this.props.item.data;
+    var cxt = this;
     data.group.icon || (data.group.icon = {source: AppData.Clubs.DEFAULT_ICON_URI});
     data.group.intro || (data.group.intro = '');
     return (
       <TouchableHighlight
         underlayColor={'#ccc'}
         onPress={function () {
-          Clubs.getClubsInfo(data.group.name, function (data) {
-            //console.log(data);
-          });
+          cxt.props.selectClub(data.group.name);
         }}>
         <View
           style={styles.rowView}>

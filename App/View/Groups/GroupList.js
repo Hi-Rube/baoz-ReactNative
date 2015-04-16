@@ -25,7 +25,9 @@ var GroupListView = React.createClass({
   },
   _renderGroupListRow: function (data) {
     return (
-      <GroupListRowView item={data}/>
+      <GroupListRowView
+        selectClub={this.props.selectClub}
+        item={data}/>
     )
   }
 });
