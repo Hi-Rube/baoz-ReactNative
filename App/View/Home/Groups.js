@@ -7,13 +7,19 @@ var GroupListView = require('../Groups/GroupList');
 
 var {
   Text,
-  View
+  View,
+  ListView
   } = React;
+
+var CACHE = [];
 
 var GroupsView = React.createClass({
   getInitialState: function () {
     return {
-      selectGroup: '院校'
+      selectGroup: '院校',
+      dataSource: new ListView.DataSource({
+        rowHasChanged: (r1, r2) => r1 !== r2
+      })
     }
   },
   _renderGroupTitle: function () {
@@ -25,6 +31,7 @@ var GroupsView = React.createClass({
           <Text
             onPress = {() => {
               cxt.setState({selectGroup: item});
+              this._fetchData(item);
             }}
             style={[styles.itemTitleText, function () {
               if (item == cxt.state.selectGroup) {
@@ -43,10 +50,32 @@ var GroupsView = React.createClass({
       <View style={styles.container}>
         {this._renderGroupTitle()}
         <GroupListView
+          data={this.state.dataSource}
           groupName={this.state.selectGroup}
           style={styles.groupList} />
       </View>
     );
+  },
+  componentDidMount: function () {
+    this._fetchData(this.state.selectGroup);
+  },
+  _fetchData: function (groupName) {
+    var cxt = this;
+    if (CACHE.length != 0) {
+      this.setState({
+        dataSource: this.state.dataSource.cloneWithRows(CACHE)
+      });
+    }
+    Groups.getGroupClubs(groupName, function (data) {
+      CACHE = [];
+      for (var i in data) {
+        CACHE.push(data[i]);
+      }
+      //console.log(data[0]);
+      cxt.setState({dataSource: cxt.state.dataSource.cloneWithRows(CACHE)});
+    }, function (err) {
+      console.log(err);
+    });
   }
 });
 
@@ -67,7 +96,7 @@ var styles = React.StyleSheet.create({
     textAlign: 'center'
   },
   groupList: {
-    marginTop:10
+    marginTop: 10
   }
 });
 
