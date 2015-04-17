@@ -24,7 +24,7 @@ var getClubsBBS = function (clubName, start, successFunc, errorFunc) {
     })
     .then(function (responseObj) {
       if (start <= 0) {
-        successFunc && successFunc(responseObj.bbs.list.bbs.list);
+        successFunc && successFunc(responseObj.bbs.top.bbs.list.concat(responseObj.bbs.list.bbs.list));
       } else {
         successFunc && successFunc(responseObj);
       }

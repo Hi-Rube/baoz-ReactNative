@@ -64,7 +64,8 @@ var Style = React.StyleSheet.create({
     alignItems: 'center'
   },
   infoView: {
-    top: 70
+    top: 70,
+    flex: 1
   }
 });
 
