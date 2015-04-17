@@ -9,7 +9,7 @@ var Groups = {
 };
 
 var Clubs = {
-  DEFAULT_ICON_URI: 'http://as.baoz.cn/f/f9bafc1e9eab04863fb7d42fa3a3f457.t120x120.r12x0x0x12.b2x0x6x2xf3f3f3.png',
+  DEFAULT_ICON_URI: 'f9bafc1e9eab04863fb7d42fa3a3f457.t120x120.r12x0x0x12.b2x0x6x2xf3f3f3',
   getBlockURL: function (club) {
     return 'get.' + club + '.block';
   },
