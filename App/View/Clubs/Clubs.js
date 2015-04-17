@@ -3,10 +3,12 @@
 var React = require('react-native');
 var Clubs = require('../../Proxy/Clubs');
 var ClubInfoView = require('../Clubs/ClubInfo');
+var TopicListView = require('../Topics/TopicList');
 
 var {
   Text,
   View,
+  ListView,
   ActivityIndicatorIOS
   } = React;
 
@@ -14,6 +16,9 @@ var ClubView = React.createClass({
   getInitialState: function () {
     return {
       clubInfo: null,
+      topicListInfo: new ListView.DataSource({
+        rowHasChanged: (r1, r2) => r1 !== r2
+      }),
       loaded: 0
     }
   },
@@ -29,6 +34,8 @@ var ClubView = React.createClass({
         <View style={Style.infoView}>
           <ClubInfoView
             data={this.state.clubInfo}/>
+          <TopicListView
+            data={this.state.topicListInfo}/>
         </View>
       )
     }
@@ -36,10 +43,15 @@ var ClubView = React.createClass({
   componentDidMount: function () {
     var that = this;
     Clubs.getClubsInfo(this.props.clubName, function (data) {
-      that.setState({clubInfo: data, loaded: that.state.loaded + 2});
+      that.setState({clubInfo: data, loaded: that.state.loaded + 1});
     }, function (err) {
-      console.log(err);
+      console.log(err.message);
     });
+    Clubs.getClubsBBS(this.props.clubName, 0, function (data) {
+      that.setState({topicListInfo: that.state.topicListInfo.cloneWithRows(data), loaded: that.state.loaded + 1});
+    }, function (err) {
+      console.log(err.message);
+    })
   }
 });
 

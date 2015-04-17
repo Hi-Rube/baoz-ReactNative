@@ -17,6 +17,25 @@ var getClubsInfo = function (clubName, successFunc, errorFunc) {
     .done();
 };
 
+var getClubsBBS = function (clubName, start, successFunc, errorFunc) {
+  fetch(Api.getClubsBBS(clubName, start))
+    .then(function (response) {
+      return Util.getApiData(response._bodyText);
+    })
+    .then(function (responseObj) {
+      if (start <= 0) {
+        successFunc && successFunc(responseObj.bbs.list.bbs.list);
+      } else {
+        successFunc && successFunc(responseObj);
+      }
+    })
+    .catch((error)=> {
+      errorFunc && errorFunc(error);
+    })
+    .done();
+};
+
 module.exports = {
-  getClubsInfo: getClubsInfo
+  getClubsInfo: getClubsInfo,
+  getClubsBBS: getClubsBBS
 };

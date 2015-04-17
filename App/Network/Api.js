@@ -8,6 +8,7 @@ var BALANCING = function () {
 };
 
 var BAOZ_TEXT_URL = 'http://i.baoz.cn/rest/object/';
+var BAOZ_SORT_URL = 'http://i.baoz.cn/rest/';
 var BAOZ_IMAGE_URL = function () {
   var balancing = BALANCING();
   return "http://" + balancing[0] + '.' + balancing[1] + '.' + 'baoz.cn/f/';
@@ -16,6 +17,10 @@ var BAOZ_IMAGE_URL = function () {
 function api(api) {
   return BAOZ_TEXT_URL + encodeURIComponent(api);
 };
+
+function sortapi(api) {
+  return BAOZ_SORT_URL + encodeURIComponent(api);
+}
 
 function getImageURL(source, options) {
   options || (options = {});
@@ -31,8 +36,17 @@ function getClubsInfo(clubName) {
   return api(AppData.Clubs.getBlockURL(clubName));
 };
 
+function getClubsBBS(clubName, start) {
+  if (typeof clubName == 'string' || start <= 0) {
+    return api(AppData.Clubs.getbbsURL(clubName));
+  } else if (typeof clubName == 'number') {
+    return sortapi(AppData.Clubs.getbbsSortURL(clubName, start));
+  }
+};
+
 module.exports = {
   getGroupClubs: getGroupClubs,
   getImageURL: getImageURL,
-  getClubsInfo: getClubsInfo
+  getClubsInfo: getClubsInfo,
+  getClubsBBS: getClubsBBS
 };
