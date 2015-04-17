@@ -12,7 +12,7 @@ var {
 
 var ClubInfoView = React.createClass({
   _renderLeader: function (data) {
-    var adminsList = [].concat(data.admins);
+    var adminsList = data.admins ? [].concat(data.admins) : [];
     adminsList.push(data.user);
     return adminsList.map(admin => {
       admin.user.icon || (admin.user.icon = {source: AppData.Clubs.DEFAULT_ICON_URI});
