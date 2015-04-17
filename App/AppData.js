@@ -18,6 +18,9 @@ var Clubs = {
   },
   getHomeURL: function (club) {
     return 'get.' + club + '.home';
+  },
+  getbbsSortURL: function (clubId, start) {
+    return clubId + '/bbs/list.bbs..' + start + '.desc';
   }
 };
 

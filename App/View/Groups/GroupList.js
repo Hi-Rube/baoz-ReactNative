@@ -4,8 +4,7 @@ var React = require('react-native');
 var GroupListRowView = require('./GroupListRow');
 
 var {
-  ListView,
-  Text
+  ListView
   } = React;
 
 var GroupListView = React.createClass({
