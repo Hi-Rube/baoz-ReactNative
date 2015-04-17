@@ -13,7 +13,6 @@ var {
   ActivityIndicatorIOS
   } = React;
 
-var CACHE = [];
 
 var GroupsView = React.createClass({
   getInitialState: function () {
@@ -74,13 +73,9 @@ var GroupsView = React.createClass({
   _fetchData: function (groupName) {
     var that = this;
     Groups.getGroupClubs(groupName, function (data) {
-      CACHE = [];
-      for (var i in data) {
-        CACHE.push(data[i]);
-      }
       //console.log(data[0]);
       that.setState({
-        dataSource: that.state.dataSource.cloneWithRows(CACHE),
+        dataSource: that.state.dataSource.cloneWithRows(data),
         selectGroup: groupName,
         loaded: true
       });
