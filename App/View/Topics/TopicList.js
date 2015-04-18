@@ -6,15 +6,24 @@ var TopicListRowView = require('./TopicListRow');
 var {
   ListView,
   Text,
-  View
+  View,
+  TouchableHighlight
   } = React;
 
 var TopicListView = React.createClass({
   _renderTopicListRow: function (data) {
     return (
-      <TopicListRowView
-        item={data}
-      />
+      <TouchableHighlight
+        onPress={()=> {
+          this.props.selectTopic(1, 'name');
+        }}
+        underlayColor={'#ccc'}>
+        <View>
+          <TopicListRowView
+            item={data}
+          />
+        </View>
+      </TouchableHighlight>
     );
   },
   _renderFooter: function () {
@@ -54,8 +63,8 @@ var styles = React.StyleSheet.create({
     justifyContent: 'space-around'
   },
   listFooterText: {
-    fontWeight:'bold',
-    color:'#777'
+    fontWeight: 'bold',
+    color: '#777'
   }
 });
 
