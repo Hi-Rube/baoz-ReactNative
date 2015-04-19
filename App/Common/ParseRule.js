@@ -36,7 +36,9 @@ module.exports = {
     margin: 0
   },
   '<pre>': {
-    backgroundColor: '#efefef'
+    backgroundColor: '#333',
+    fontWeight:'bold',
+    color:'#2a2'
   },
   '<code>': {
     backgroundColor: '#f6f6f6',
