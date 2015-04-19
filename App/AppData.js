@@ -24,9 +24,19 @@ var Clubs = {
   }
 };
 
+var Comments = {
+  getCommentURL: function (topicId, start) {
+    if (start == 0) {
+      return 'get.' + topicId + '..comments.list';
+    }
+    return topicId + '/comments/list.comment..' + start;
+  }
+};
+
 var Data = {
   Groups: Groups,
-  Clubs: Clubs
+  Clubs: Clubs,
+  Comments: Comments
 };
 
 module.exports = Data;

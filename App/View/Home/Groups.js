@@ -87,7 +87,7 @@ var GroupsView = React.createClass({
     this.props.navigator.push({
       title: clubName,
       component: ClubsView,
-      passProps: {clubName: clubName}
+      passProps: {clubName: clubName, navigator: this.props.navigator}
     });
   }
 });

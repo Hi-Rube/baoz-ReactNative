@@ -4,6 +4,7 @@ var React = require('react-native');
 var Clubs = require('../../Proxy/Clubs');
 var ClubInfoView = require('../Clubs/ClubInfo');
 var TopicListView = require('../Topics/TopicList');
+var CommentListView = require('../Topics/CommentList');
 
 var {
   Text,
@@ -35,6 +36,7 @@ var ClubView = React.createClass({
           <ClubInfoView
             data={this.state.clubInfo}/>
           <TopicListView
+            selectTopic={this.selectTopic}
             data={this.state.topicListInfo}/>
         </View>
       )
@@ -52,6 +54,14 @@ var ClubView = React.createClass({
     }, function (err) {
       console.log(err.message);
     })
+  },
+  selectTopic: function (id, title) {
+    title = title.length > 10 ? title.substr(0, 10) + '...' : title;
+    this.props.navigator.push({
+      title: title,
+      component: CommentListView,
+      passProps: {topicId: id}
+    });
   }
 });
 

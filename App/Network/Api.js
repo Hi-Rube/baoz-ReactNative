@@ -24,8 +24,8 @@ function sortapi(api) {
 
 function getImageURL(source, options) {
   options || (options = {});
-  options.type || (options['type'] = '.png');
-  return BAOZ_IMAGE_URL() + source + options.type;
+  options.type || (options['type'] = 'png');
+  return BAOZ_IMAGE_URL() + source + '.' + options.type;
 };
 
 function getGroupClubs(groupName) {
@@ -40,13 +40,21 @@ function getClubsBBS(clubName, start) {
   if (typeof clubName == 'string' || start <= 0) {
     return api(AppData.Clubs.getbbsURL(clubName));
   } else if (typeof clubName == 'number') {
-    return sortapi(AppData.Clubs.getbbsSortURL(clubName, start));
+    return sortapi(AppData.Clubs.getbbsSortURL(clubName, start)).replace(/%2F/g, '/');
   }
+};
+
+function getCommentsList(topicID, start) {
+  if (start == 0) {
+    return api(AppData.Comments.getCommentURL(topicID, 0));
+  }
+  return sortapi(AppData.Comments.getCommentURL(topicID, start)).replace(/%2F/g, '/');
 };
 
 module.exports = {
   getGroupClubs: getGroupClubs,
   getImageURL: getImageURL,
   getClubsInfo: getClubsInfo,
-  getClubsBBS: getClubsBBS
+  getClubsBBS: getClubsBBS,
+  getCommentsList: getCommentsList
 };
