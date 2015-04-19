@@ -15,7 +15,7 @@ var TopicListView = React.createClass({
     return (
       <TouchableHighlight
         onPress={()=> {
-          this.props.selectTopic(1, 'name');
+          this.props.selectTopic(data.data.id, data.data.message.title);
         }}
         underlayColor={'#ccc'}>
         <View>

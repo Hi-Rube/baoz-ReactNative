@@ -22,7 +22,7 @@ var TopicListRowView = React.createClass({
   },
   render: function () {
     var data = this.props.item.data;
-    //baoz.cn's bug兼容
+    //fix baoz.cn's bug
     data.message.user || (data.message.user = {user: {name: 'admin', icon: {crop: AppData.Clubs.DEFAULT_ICON_URI}}});
     data.message.user.user.icon || (data.message.user.user.icon = {crop: AppData.Clubs.DEFAULT_ICON_URI});
     return (
