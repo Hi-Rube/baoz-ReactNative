@@ -13,10 +13,10 @@ If you want to look at the progress, please follow these steps:
 4. npm start
 5. Compile the project
 
-![group](https://github.com/Hi-Rube/baoz-ReactNative/Images/group.png)
-![club](https://github.com/Hi-Rube/baoz-ReactNative/Images/club.png)
-![comment](https://github.com/Hi-Rube/baoz-ReactNative/Images/comment.png)
-![commentCode](https://github.com/Hi-Rube/baoz-ReactNative/Images/commentCode.png)
-![commentImage](https://github.com/Hi-Rube/baoz-ReactNative/Images/commentImage.png)
+![group](https://github.com/Hi-Rube/baoz-ReactNative/blob/master/Images/club.png?raw=true)
+![club](https://github.com/Hi-Rube/baoz-ReactNative/blob/master/Images/club.png?raw=true)
+![comment](https://github.com/Hi-Rube/baoz-ReactNative/blob/master/Images/comment.png?raw=true)
+![commentCode](https://github.com/Hi-Rube/baoz-ReactNative/blob/master/Images/commentCode.png?raw=true)
+![commentImage](https://github.com/Hi-Rube/baoz-ReactNative/blob/master/Images/commentImage.png?raw=true)
 
 
