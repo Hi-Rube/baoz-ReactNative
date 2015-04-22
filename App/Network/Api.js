@@ -9,6 +9,7 @@ var BALANCING = function () {
 
 var BAOZ_TEXT_URL = 'http://i.baoz.cn/rest/object/';
 var BAOZ_SORT_URL = 'http://i.baoz.cn/rest/';
+var BAOZ_SEARCH_URL = 'http://baoz.chekun.me/search/do?q=';
 var BAOZ_IMAGE_URL = function () {
   var balancing = BALANCING();
   return "http://" + balancing[0] + '.' + balancing[1] + '.' + 'baoz.cn/f/';
@@ -20,6 +21,10 @@ function api(api) {
 
 function sortapi(api) {
   return BAOZ_SORT_URL + encodeURIComponent(api);
+};
+
+function searchapi(api){
+  return BAOZ_SEARCH_URL + encodeURIComponent(api);
 }
 
 function getImageURL(source, options) {
@@ -52,10 +57,15 @@ function getCommentsList(topicID, start) {
   return sortapi(AppData.Comments.getCommentURL(topicID, start)).replace(/%2F/g, '/');
 };
 
+function getSearch(query) {
+  return searchapi(AppData.Search.getSearchURL(query));
+};
+
 module.exports = {
   getGroupClubs: getGroupClubs,
   getImageURL: getImageURL,
   getClubsInfo: getClubsInfo,
   getClubsBBS: getClubsBBS,
-  getCommentsList: getCommentsList
+  getCommentsList: getCommentsList,
+  getSearch: getSearch
 };

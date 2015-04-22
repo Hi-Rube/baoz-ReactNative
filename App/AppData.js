@@ -33,10 +33,17 @@ var Comments = {
   }
 };
 
+var Search = {
+  getSearchURL:function(query){
+    return query;
+  }
+};
+
 var Data = {
   Groups: Groups,
   Clubs: Clubs,
-  Comments: Comments
+  Comments: Comments,
+  Search: Search
 };
 
 module.exports = Data;

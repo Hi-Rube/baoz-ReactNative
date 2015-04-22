@@ -3,6 +3,7 @@
 var React = require('react-native');
 var AboutView = require('./Home/About');
 var GroupsView = require('./Home/Groups');
+var SearchView = require('./Home/Search');
 var {
   StyleSheet,
   TabBarIOS,
@@ -54,7 +55,7 @@ var IndexView = React.createClass({
           icon = {require('image!search')}
           onPress = {() => this.setState({selectedBar: 'search'})}
         >
-          {this._renderContent('搜索', AboutView)}
+          {this._renderContent('搜索', SearchView)}
         </TabBarIOS.Item>
         <TabBarIOS.Item
           title = '关于'
