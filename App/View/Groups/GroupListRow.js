@@ -17,6 +17,7 @@ var GroupListRow = React.createClass({
     var cxt = this;
     data.group.icon || (data.group.icon = {source: AppData.Clubs.DEFAULT_ICON_URI});
     data.group.intro || (data.group.intro = '');
+    var t = {width: 50, height: 50};
     return (
       <TouchableHighlight
         underlayColor={'#ccc'}
@@ -27,7 +28,7 @@ var GroupListRow = React.createClass({
           style={styles.rowView}>
           <Image
             style={styles.rowImage}
-            source={{uri: Images.getImageURL(data.group.icon.source)}}/>
+            source={{uri: Images.getImageURL(data.group.icon.source, {t: t})}}/>
           <View style={styles.rowText}>
             <Text style={styles.rowTextGroupName}>{data.group.name}</Text>
             <Text style={styles.rowTextGroupInfo}>{data.group.intro.substr(0, 20) + '...'}</Text>

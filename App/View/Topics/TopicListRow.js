@@ -25,11 +25,12 @@ var TopicListRowView = React.createClass({
     //fix baoz.cn's bug
     data.message.user || (data.message.user = {user: {name: 'admin', icon: {crop: AppData.Clubs.DEFAULT_ICON_URI}}});
     data.message.user.user.icon || (data.message.user.user.icon = {crop: AppData.Clubs.DEFAULT_ICON_URI});
+    var t = {width: 40, height: 40};
     return (
       <View style={styles.container}>
         <Image
           style={styles.userHead}
-          source={{uri: Images.getImageURL(data.message.user.user.icon.crop + '.fc')}}        //.fc为face型头像是圆形
+          source={{uri: Images.getImageURL(data.message.user.user.icon.crop + '.fc', {t: t})}}        //.fc为face型头像是圆形
         />
         <View style={{marginLeft: 10, flex: 1}}>
           <Text style={styles.userName}>

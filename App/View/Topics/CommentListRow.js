@@ -20,7 +20,6 @@ var CommentListRowView = React.createClass({
     if (data.message.title) {
       title = <Text style={styles.titleText}>{data.message.title}</Text>
     }
-    console.log(data.message)
     if (data.message.attachment2) {
       attachment = data.message.attachment2.map((item) => {
         return (

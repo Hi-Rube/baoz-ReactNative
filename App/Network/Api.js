@@ -25,7 +25,8 @@ function sortapi(api) {
 function getImageURL(source, options) {
   options || (options = {});
   options.type || (options['type'] = 'png');
-  return BAOZ_IMAGE_URL() + source + '.' + options.type;
+  var t = options.t ? '.t' + options.t.width + 'x' + options.t.height : '';
+  return BAOZ_IMAGE_URL() + source + t + '.' + options.type;
 };
 
 function getGroupClubs(groupName) {
