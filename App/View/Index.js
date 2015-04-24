@@ -21,7 +21,7 @@ var IndexView = React.createClass({
 
   getInitialState: function () {
     return {
-      selectedBar: 'group'
+      selectedBar: 'search'
     };
   },
 

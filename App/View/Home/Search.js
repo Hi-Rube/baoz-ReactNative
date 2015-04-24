@@ -2,19 +2,29 @@
 
 var React = require('react-native');
 var Search = require('../../Proxy/Search');
+var SearchListView = require('../Search/SearchList');
 var {
   View,
   Text,
   Image,
   TouchableHighlight,
   TouchableOpacity,
-  TextInput
+  TextInput,
+  ListView,
+  AlertIOS,
+  ActivityIndicatorIOS
   } = React;
 
 var SearchView = React.createClass({
   getInitialState: function () {
     return {
-      selectItem: '用户'
+      loaded: true,
+      selectItem: '用户',
+      searchPage: 1,
+      searchContent: '',
+      searchResult: new ListView.DataSource({
+        rowHasChanged: (r1, r2) => r1 !== r2
+      })
     }
   },
   render: function () {
@@ -35,7 +45,6 @@ var SearchView = React.createClass({
               }
                 }>
                 <View style={[styles.selectButton, function () {
-                  console.log(1)
                   if (item == that.state.selectItem) {
                     return {backgroundColor: '#dcedc8'}
                   }
@@ -49,22 +58,71 @@ var SearchView = React.createClass({
           </View>
         </View>
         <View style={styles.searchLine}>
-          <TextInput style={styles.searchText}/>
-          <View style={styles.searchButton}>
-            <TouchableOpacity>
+          <TextInput
+            onChange={(event) => this.setState({searchContent: event.nativeEvent.text})}
+            style={styles.searchText}/>
+          <TouchableOpacity onPress={this._search}>
+            <View style={styles.searchButton}>
               <Text style={{color: '#fff', lineHeight: 16}}>搜索</Text>
-            </TouchableOpacity>
-          </View>
+            </View>
+          </TouchableOpacity>
         </View>
+      {function () {
+        if (that.state.loaded) {
+          return (
+            <SearchListView
+              style={{flex: 1}}
+              data={that.state.searchResult}
+            />
+          );
+        } else {
+          return (
+            <View style={styles.loadingContainer}>
+              <ActivityIndicatorIOS color="#356DD0" style={{marginVertical: 30, marginBottom: 30}} />
+            </View>
+          );
+        }
+      }()}
       </View>
     );
   },
-  componentDidMount: function () {
-    Search.searchPeople('ss', 1, function (data) {
-      //console.log(data);
-    }, function (err) {
+  _search: function () {
+    if (this.state.searchContent == '') {
+      return AlertIOS.alert(
+        '内容不能为空'
+      );
+    }
+    var that = this;
+    this.setState({loaded: false});
+    var errLog = function (err) {
       console.log(err.message);
-    });
+    };
+    switch (this.state.selectItem) {
+      case '用户':
+        Search.searchPeople(this.state.searchContent, this.state.searchPage, function (data) {
+          if (data.length == 0) {
+            data[0] = {msg: '没有相应用户~'};
+          }
+          that.setState({loaded: true, searchResult: that.state.searchResult.cloneWithRows(data)});
+        }, errLog);
+        break;
+      case '组群':
+        Search.searchClub(this.state.searchContent, this.state.searchPage, function (data) {
+          if (data.length == 0) {
+            data[0] = {msg: '没有相应组群~'};
+          }
+          that.setState({loaded: true, searchResult: that.state.searchResult.cloneWithRows(data)});
+        }, errLog);
+        break;
+      case '帖子':
+        Search.searchTopic(this.state.searchContent, this.state.searchPage, function (data) {
+          if (data.length == 0) {
+            data[0] = {msg: '没有相应帖子~'};
+          }
+          that.setState({loaded: true, searchResult: that.state.searchResult.cloneWithRows(data)});
+        }, errLog);
+        break;
+    }
   }
 });
 
@@ -94,9 +152,9 @@ var styles = React.StyleSheet.create({
     fontSize: 13
   },
   searchLine: {
-    flex: 1,
     height: 26,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    marginBottom: 6
   },
   searchButton: {
     height: 26,
@@ -106,6 +164,11 @@ var styles = React.StyleSheet.create({
   selectButton: {
     height: 30,
     flex: 1,
+    alignItems: 'center'
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center'
   }
 });

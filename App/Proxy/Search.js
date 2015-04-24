@@ -5,10 +5,10 @@ var Api = require('../Network/Api');
 var search = function (query, successFunc, errorFunc) {
   fetch(Api.getSearch(query))
     .then(function (response) {
-      return response._bodyText;
+      return JSON.parse(response._bodyText);
     })
     .then(function (responseObj) {
-      successFunc && successFunc(responseObj);
+      successFunc && successFunc(responseObj.results);
     })
     .catch((error) => {
       errorFunc && errorFunc(error);
