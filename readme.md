@@ -18,9 +18,9 @@ If you want to look at the progress, please follow these steps:
 <img src="https://github.com/Hi-Rube/baoz-ReactNative/blob/master/Images/comment.png?raw=true" width=200 height=400/>
 <img src="https://github.com/Hi-Rube/baoz-ReactNative/blob/master/Images/commentCode.png?raw=true" width=200 height=400/>
 <img src="https://github.com/Hi-Rube/baoz-ReactNative/blob/master/Images/commentImage.png?raw=true" width=200 height=400/>
-<img src="https://github.com/Hi-Rube/baoz-ReactNative/blob/master/Images/searchClub.png?raw=true" width=200 height=400/>
-<img src="https://github.com/Hi-Rube/baoz-ReactNative/blob/master/Images/searchPeople.png?raw=true" width=200 height=400/>
-<img src="https://github.com/Hi-Rube/baoz-ReactNative/blob/master/Images/searchTopic.png?raw=true" width=200 height=400/>
+<img src="https://github.com/Hi-Rube/baoz-ReactNative/blob/master/Images/searchclub.png?raw=true" width=200 height=400/>
+<img src="https://github.com/Hi-Rube/baoz-ReactNative/blob/master/Images/searchpeople.png?raw=true" width=200 height=400/>
+<img src="https://github.com/Hi-Rube/baoz-ReactNative/blob/master/Images/searchtopic.png?raw=true" width=200 height=400/>
 
 
 
