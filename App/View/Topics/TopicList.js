@@ -33,13 +33,17 @@ var TopicListView = React.createClass({
       <View style={styles.listFooter}>
         <TouchableHighlight
           onPress={()=>this.props.refresh()}
-          underlayColor={'#ccc'}
+          underlayColor={'#fff'}
           style={styles.buttonContainer}>
           <Text style={styles.listFooterText}>刷新</Text>
         </TouchableHighlight>
         <TouchableHighlight
-          onPress={()=>this.props.nextPage(parseInt(item.sort))}
-          underlayColor={'#ccc'}
+          onPress={()=> {
+            if (item) {
+              this.props.nextPage(parseInt(item.sort))
+            }
+          }}
+          underlayColor={'#fff'}
           style={styles.buttonContainer}>
           <Text style={styles.listFooterText}>下一页</Text>
         </TouchableHighlight>
@@ -71,8 +75,7 @@ var styles = React.StyleSheet.create({
   listFooter: {
     height: 40,
     alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-around'
+    flexDirection: 'row'
   },
   listFooterText: {
     fontWeight: 'bold',
@@ -80,7 +83,9 @@ var styles = React.StyleSheet.create({
   },
   buttonContainer: {
     flex: 1,
-    alignItems: 'center'
+    height:40,
+    alignItems: 'center',
+    justifyContent:'center'
   }
 });
 
