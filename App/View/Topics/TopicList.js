@@ -7,7 +7,7 @@ var {
   ListView,
   Text,
   View,
-  TouchableHighlight
+  TouchableHighlight,
   } = React;
 
 var TopicListView = React.createClass({
@@ -27,10 +27,22 @@ var TopicListView = React.createClass({
     );
   },
   _renderFooter: function () {
+    var list = this.props.data.$ListViewDataSource_dataBlob.s1;
+    var item = list[list.length - 1];
     return (
       <View style={styles.listFooter}>
-        <Text style={styles.listFooterText}>刷新</Text>
-        <Text style={styles.listFooterText}>下一页</Text>
+        <TouchableHighlight
+          onPress={()=>this.props.refresh()}
+          underlayColor={'#ccc'}
+          style={styles.buttonContainer}>
+          <Text style={styles.listFooterText}>刷新</Text>
+        </TouchableHighlight>
+        <TouchableHighlight
+          onPress={()=>this.props.nextPage(parseInt(item.sort))}
+          underlayColor={'#ccc'}
+          style={styles.buttonContainer}>
+          <Text style={styles.listFooterText}>下一页</Text>
+        </TouchableHighlight>
       </View>
     )
   },
@@ -65,6 +77,10 @@ var styles = React.StyleSheet.create({
   listFooterText: {
     fontWeight: 'bold',
     color: '#777'
+  },
+  buttonContainer: {
+    flex: 1,
+    alignItems: 'center'
   }
 });
 

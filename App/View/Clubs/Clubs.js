@@ -36,6 +36,8 @@ var ClubView = React.createClass({
           <ClubInfoView
             data={this.state.clubInfo}/>
           <TopicListView
+            refresh={this.refresh}
+            nextPage={this.nextPage}
             selectTopic={this.selectTopic}
             data={this.state.topicListInfo}/>
         </View>
@@ -62,6 +64,30 @@ var ClubView = React.createClass({
       component: CommentListView,
       passProps: {topicId: id}
     });
+  },
+  nextPage: function (footerTopic) {
+    var that = this;
+    this.setState({loaded: 1});
+    Clubs.getClubsBBS(this.state.clubInfo.id, footerTopic, function (data) {
+      that.setState({
+        topicListInfo: that.state.topicListInfo.cloneWithRows(data),
+        loaded: that.state.loaded + 1
+      });
+    }, function (err) {
+      console.log(err.message);
+    })
+  },
+  refresh: function () {
+    var that = this;
+    this.setState({loaded: 1});
+    Clubs.getClubsBBS(this.props.clubName, 0, function (data) {
+      that.setState({
+        topicListInfo: that.state.topicListInfo.cloneWithRows(data),
+        loaded: that.state.loaded + 1
+      });
+    }, function (err) {
+      console.log(err.message);
+    })
   }
 });
 
