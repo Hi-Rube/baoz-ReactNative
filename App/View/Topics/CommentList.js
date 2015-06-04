@@ -8,6 +8,7 @@ var {
   Text,
   View,
   ListView,
+  TouchableHighlight,
   ActivityIndicatorIOS
   } = React;
 
@@ -27,6 +28,28 @@ var CommentListView = React.createClass({
       />
     );
   },
+  _renderFooter: function () {
+    if (this.state.commentList.rowIdentities[0].length > 50) {
+      return (
+        <View style={Style.listFooter}>
+          <TouchableHighlight
+            style={Style.buttonContainer}
+            underlayColor={'#fff'}
+          >
+            <Text style={Style.listFooterText}>刷新</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={Style.buttonContainer}
+            underlayColor={'#fff'}
+          >
+            <Text style={Style.listFooterText}>下一页</Text>
+          </TouchableHighlight>
+        </View>
+      );
+    } else {
+      return null;
+    }
+  },
   render: function () {
     if (!this.state.loaded) {
       return (
@@ -41,6 +64,7 @@ var CommentListView = React.createClass({
             automaticallyAdjustContentInsets={false}
             showsVerticalScrollIndicator={false}
             dataSource={this.state.commentList}
+            renderFooter={this._renderFooter}
             renderRow={this._renderCommentListRow}
           />
         </View>
@@ -58,6 +82,12 @@ var CommentListView = React.createClass({
     }, function (error) {
       console.log(error.message);
     })
+  },
+  next: function () {
+
+  },
+  refresh: function () {
+
   }
 });
 
@@ -70,7 +100,23 @@ var Style = React.StyleSheet.create({
   },
   commentListView: {
     marginTop: 65,
-    flex: 1
+    flex: 1,
+    marginBottom: 50
+  },
+  listFooter: {
+    height: 40,
+    alignItems: 'center',
+    flexDirection: 'row'
+  },
+  listFooterText: {
+    fontWeight: 'bold',
+    color: '#777'
+  },
+  buttonContainer: {
+    flex: 1,
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });
 
