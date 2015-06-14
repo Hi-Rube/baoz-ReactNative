@@ -5,11 +5,16 @@ Yet another IOS app For Baoz.cn!
 Still Working in progress, stay tuned!
 
 If you want to look at the progress, please follow these steps:     
-0. install node and npm
-1. git clone https://github.com/Hi-Rube/baoz-ReactNative
-2. cd baoz-ReactNative
-3. npm install
-4. npm start
+0. install node and npm         
+
+1. git clone https://github.com/Hi-Rube/baoz-ReactNative        
+
+2. cd baoz-ReactNative      
+
+3. npm install       
+
+4. npm start       
+
 5. Compile the project
 
 <img src="https://github.com/Hi-Rube/baoz-ReactNative/blob/master/Images/group.png?raw=true" width=200 height=400/>
