@@ -14,10 +14,10 @@ var AboutView = React.createClass({
       <View style={styles.container}>
         <Image
           style={styles.titleImage}
-          source={{uri:'http://3.as.baoz.cn/f/b3641b7059e0ceb9697bffda1fbf13cb.c0x0x298x180.t160x160.jpg'}}>
+          source={{uri:'http://as.named.cn/f/5ff9062b936cbbdcf8104cc1337ee171.png'}}>
         </Image>
         <Text style={styles.titleText}>
-          baoz社区React版客户端
+          那么社区React版客户端
         </Text>
       </View>
     );

@@ -27,7 +27,7 @@ var TopicListView = React.createClass({
         );
     },
     _renderFooter: function () {
-        var list = this.props.data.$ListViewDataSource_dataBlob.s1;
+        var list = this.props.data._dataBlob.s1;
         var item = list[list.length - 1];
         return (
             <View style={styles.listFooter}>

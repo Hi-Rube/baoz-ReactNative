@@ -29,7 +29,7 @@ var CommentListView = React.createClass({
         );
     },
     _renderFooter: function () {
-        var list = this.state.commentList.$ListViewDataSource_dataBlob.s1;
+        var list = this.state.commentList._dataBlob.s1;
         var item = list[list.length - 1];
         if (this.state.commentList.rowIdentities[0].length >= 50) {
             return (

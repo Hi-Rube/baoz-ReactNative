@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>FA542B4F-DD12-4257-8BE2-8A8B8C9F5AB5</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>BaozReact</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>937A43A8D39B74392E66D650D1642374B3BDCA92</key>
 		<string>https://github.com/Hi-Rube/baoz-react.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>BaozReact.xcodeproj/project.xcworkspace</string>
+	<string>BaozReact.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>937A43A8D39B74392E66D650D1642374B3BDCA92</key>

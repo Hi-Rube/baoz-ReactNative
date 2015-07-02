@@ -8,12 +8,13 @@ var BALANCING = function () {
     return ['as'];
 };
 
-var BAOZ_TEXT_URL = 'http://i.baoz.cn/rest/object/';
-var BAOZ_SORT_URL = 'http://i.baoz.cn/rest/';
+var BAOZ_TEXT_URL = 'http://i.named.cn/rest/object/';
+var BAOZ_SORT_URL = 'http://i.named.cn/rest/';
 var BAOZ_SEARCH_URL = 'http://baoz.chekun.me/search/do';
 var BAOZ_IMAGE_URL = function () {
     var balancing = BALANCING();
-    return "http://" + balancing[0] + '.baoz.cn/f/';
+    /** 那么社区 api 变动 **/
+    return "http://" + balancing[0] + '.named.cn/f/';
     //return "http://" + balancing[0] + '.' + balancing[1] + '.' + 'baoz.cn/f/';
 };
 
