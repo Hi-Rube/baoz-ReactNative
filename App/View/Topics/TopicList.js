@@ -50,7 +50,7 @@ var TopicListView = React.createClass({
                     </TouchableHighlight>
                 </View>
             )
-        } 
+        }
     },
     render: function () {
         return (
