@@ -29,26 +29,28 @@ var TopicListView = React.createClass({
     _renderFooter: function () {
         var list = this.props.data._dataBlob.s1;
         var item = list[list.length - 1];
-        return (
-            <View style={styles.listFooter}>
-                <TouchableHighlight
-                    onPress={()=>this.props.refresh()}
-                    underlayColor={'#fff'}
-                    style={styles.buttonContainer}>
-                    <Text style={styles.listFooterText}>刷新</Text>
-                </TouchableHighlight>
-                <TouchableHighlight
-                    onPress={()=> {
-                        if (item) {
-                            this.props.nextPage(parseInt(item.sort))
-                        }
-                    }}
-                    underlayColor={'#fff'}
-                    style={styles.buttonContainer}>
-                    <Text style={styles.listFooterText}>下一页</Text>
-                </TouchableHighlight>
-            </View>
-        )
+        if (this.props.data.rowIdentities[0].length >= 50) {
+            return (
+                <View style={styles.listFooter}>
+                    <TouchableHighlight
+                        onPress={()=>this.props.refresh()}
+                        underlayColor={'#fff'}
+                        style={styles.buttonContainer}>
+                        <Text style={styles.listFooterText}>刷新</Text>
+                    </TouchableHighlight>
+                    <TouchableHighlight
+                        onPress={()=> {
+                            if (item) {
+                                this.props.nextPage(parseInt(item.sort))
+                            }
+                        }}
+                        underlayColor={'#fff'}
+                        style={styles.buttonContainer}>
+                        <Text style={styles.listFooterText}>下一页</Text>
+                    </TouchableHighlight>
+                </View>
+            )
+        } 
     },
     render: function () {
         return (
