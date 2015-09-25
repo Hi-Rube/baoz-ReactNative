@@ -10,7 +10,7 @@ var BALANCING = function () {
 
 var BAOZ_TEXT_URL = 'http://i.named.cn/rest/object/';
 var BAOZ_SORT_URL = 'http://i.named.cn/rest/';
-var BAOZ_SEARCH_URL = 'http://baoz.chekun.me/search/do';
+var BAOZ_SEARCH_URL = 'http://name.hirube.com/search/do';
 var BAOZ_IMAGE_URL = function () {
     var balancing = BALANCING();
     /** 那么社区 api 变动 **/
