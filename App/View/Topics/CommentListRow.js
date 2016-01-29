@@ -27,11 +27,12 @@ var CommentListRowView = React.createClass({
             title = <Text style={styles.titleText}>{data.message.title}</Text>
         }
         if (data.message.attachment2) {
-            attachment = data.message.attachment2.map((item) => {
+            attachment = data.message.attachment2.map((item, idx) => {
                 var _width = item.width > WINDOW_WIDTH - 6 * WINDOW_PIXELRATIO ?
                 WINDOW_WIDTH - 6 * WINDOW_PIXELRATIO : item.width - 6 * WINDOW_PIXELRATIO;
                 return (
                     <Image
+                        key={idx}
                         source={{uri: Images.getImageURL(item.source, {type: item.type == 'jpeg' ? 'jpg' : item.type})}}
                         style={{
                             width: _width,

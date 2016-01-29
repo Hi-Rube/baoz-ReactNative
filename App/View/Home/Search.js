@@ -43,7 +43,8 @@ var SearchView = React.createClass({
               <TouchableOpacity onPress={()=> {
                 that.setState({selectItem: item});
               }
-                }>
+                }
+              key={item}>
                 <View style={[styles.selectButton, function () {
                   if (item == that.state.selectItem) {
                     return {backgroundColor: '#dcedc8'}

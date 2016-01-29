@@ -35,6 +35,7 @@ var GroupsView = React.createClass({
               this.setState({loaded: false});
               this._fetchData(item);
             }}
+            key={item}
             style={[styles.itemTitleText, function () {
               if (item == that.state.selectGroup) {
                 return {color: '#0d5302'}

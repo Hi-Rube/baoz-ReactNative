@@ -41,6 +41,7 @@ var IndexView = React.createClass({
       <TabBarIOS selectedTab={this.state.selectedBar}>
         <TabBarIOS.Item
           title = '组群'
+          key = 'group'
           name = 'group'
           selected = {this.state.selectedBar == 'group'}
           onPress = {() => this.setState({selectedBar: 'group'})}
@@ -49,6 +50,7 @@ var IndexView = React.createClass({
         </TabBarIOS.Item>
         <TabBarIOS.Item
           title = '搜索'
+          key = 'search'
           name = 'search'
           selected = {this.state.selectedBar == 'search'}
           onPress = {() => this.setState({selectedBar: 'search'})}
@@ -57,6 +59,7 @@ var IndexView = React.createClass({
         </TabBarIOS.Item>
         <TabBarIOS.Item
           title = '关于'
+          key = 'about'
           name = 'about'
           selected = {this.state.selectedBar == 'about'}
           systemIcon = 'more'

@@ -12,9 +12,11 @@ var {
 var TopicListRowView = React.createClass({
   _renderTag: function (tags) {
     if (tags)
-      return tags.map((tag)=> {
+      return tags.map((tag, idx)=> {
         return (
-          <Text style={styles[tag + 'Icon']}>
+          <Text
+              key={idx}
+              style={styles[tag + 'Icon']}>
            {tag}
           </Text>
         );

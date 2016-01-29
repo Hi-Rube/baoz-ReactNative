@@ -86,10 +86,10 @@ var ParseHTML = React.createClass({
     }
   },
   _renderHTMLParseTree: function (parseTree) {
-    return parseTree.map((segment)=> {
+    return parseTree.map((segment, idx)=> {
       if (segment.segments)
         return this._renderHTMLParseTree(segment.segments)
-      return <Text style={segment.style}>{segment.text}</Text>;
+      return <Text key={idx} style={segment.style}>{segment.text}</Text>;
     });
   },
   _decodeHTMLEntities: function (str) {

@@ -14,10 +14,11 @@ var ClubInfoView = React.createClass({
   _renderLeader: function (data) {
     var adminsList = data.admins ? [].concat(data.admins) : [];
     adminsList.push(data.user);
-    return adminsList.map(admin => {
+    return adminsList.map((admin,idx) => {
       admin.user.icon || (admin.user.icon = {source: AppData.Clubs.DEFAULT_ICON_URI});
       return (
-        <View style={styles.leader}>
+        <View style={styles.leader}
+        key={idx}>
           <Image
             style={styles.userHead}
             source={{uri: Images.getImageURL(admin.user.icon.source)}}/>
