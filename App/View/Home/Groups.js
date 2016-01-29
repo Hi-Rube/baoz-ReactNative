@@ -18,7 +18,7 @@ var GroupsView = React.createClass({
   getInitialState: function () {
     return {
       loaded: false,
-      selectGroup: '院校',
+      selectGroup: '校园',
       dataSource: new ListView.DataSource({
         rowHasChanged: (r1, r2) => r1 !== r2
       })

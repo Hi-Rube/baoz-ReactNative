@@ -21,7 +21,7 @@ var IndexView = React.createClass({
 
   getInitialState: function () {
     return {
-      selectedBar: 'search'
+      selectedBar: 'group'
     };
   },
 
@@ -43,7 +43,6 @@ var IndexView = React.createClass({
           title = '组群'
           name = 'group'
           selected = {this.state.selectedBar == 'group'}
-          icon = {require('image!groups')}
           onPress = {() => this.setState({selectedBar: 'group'})}
         >
           {this._renderContent('组群', GroupsView)}
@@ -52,7 +51,6 @@ var IndexView = React.createClass({
           title = '搜索'
           name = 'search'
           selected = {this.state.selectedBar == 'search'}
-          icon = {require('image!search')}
           onPress = {() => this.setState({selectedBar: 'search'})}
         >
           {this._renderContent('搜索', SearchView)}
